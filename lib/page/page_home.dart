@@ -122,7 +122,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         ), 
                         SizedBox(height: 4),
                         Text(
-                          'Azhar Rivaldi',
+                          'Bhenarezky',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
