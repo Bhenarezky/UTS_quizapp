@@ -35,50 +35,50 @@ class _AnswerCardState extends State<AnswerCard> with SingleTickerProviderStateM
     if (widget.isCorrect || widget.isWrong || widget.isSelected) {
       return Colors.white;
     }
-    return Color(0xFF2D3748);
+    return const Color(0xFF2D3748);
   } 
 
-    @override
-    Widget build(BuildContext context) {
-      return Padding(
-        padding: EdgeInsets.only(bottom: 16),
-        child: GestureDetector(
-          onTap: widget.onTap,
-          child: Container(
-            decoration: BoxDecoration(
-              color: cardColor,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: widget.color.withOpacity(0.3),
-                  blurRadius: 20,
-                  offset: Offset(0, 8)
-                )
-                        ], 
-                      ), 
-                      child: Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                widget.text,
-                                style: TextStyle(
-                                  color: textColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ), 
-                              ), 
-                            ), 
-                            if (widget.isCorrect) 
-                                            Icon(Icons.check_circle, color: Colors.white, size: 24),
-                                          if (widget.isWrong)
-                                            Icon(Icons.cancel, color: Colors.white, size: 24),
-                                        ],  
-                                      ), 
-                                    ), 
-                                  ), 
-                                ), 
-                              );
-                            }
-                          }                          
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            color: cardColor,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: widget.color.withOpacity(0.3),
+                blurRadius: 20,
+                offset: const Offset(0, 8)
+              )
+            ], 
+          ), 
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    widget.text,
+                    style: TextStyle(
+                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ), 
+                  ), 
+                ), 
+                if (widget.isCorrect) 
+                  const Icon(Icons.check_circle, color: Colors.white, size: 24),
+                if (widget.isWrong)
+                  const Icon(Icons.cancel, color: Colors.white, size: 24),
+              ],  
+            ), 
+          ), 
+        ), 
+      ), 
+    );
+  }
+}

@@ -14,6 +14,7 @@ class PageHome extends StatefulWidget {
 
 class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
   
+  // --- Data Kategori Kuis ---
   
   List<ModelCategory> modelCategory = [
     ModelCategory(
@@ -21,29 +22,29 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
       strIcon: Icons.lightbulb_outline,
       strColor: const Color(0xFF6C63FF),
       strDesc: 'Tes Kemampuan Umum',
-      questCount: 50,
+      questQount: 50, 
     ), 
     ModelCategory(
       strName: 'Sains',
       strIcon: Icons.science,
       strColor: const Color(0xFF00C853),
       strDesc: 'Tes Kemampuan Sains',
-      questCount: 25,
+      questQount: 25,
     ), 
     ModelCategory(
       strName: 'Bahasa Inggris',
       strIcon: Icons.translate,
-      // Kode warna 0xFFFE8624A diperbaiki menjadi 0xFFE8624A (asumsi)
+      // Perbaikan kode warna Hex
       strColor: const Color(0xFFE8624A), 
       strDesc: 'Tes Kemampuan Bahasa Inggris',
-      questCount: 20,
+      questQount: 20,
     ), 
     ModelCategory(
       strName: 'Sejarah',
       strIcon: Icons.history_edu,
       strColor: const Color(0xFF28C8BD),
       strDesc: 'Tes Kemampuan Sejarah',
-      questCount: 30,
+      questQount: 30,
     ), 
   ]; 
 
@@ -98,7 +99,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
         ),
         child: SingleChildScrollView(
           child: Padding(
-            // Perbaikan: EdgeInsetsGeometry.all(24) menjadi EdgeInsets.all(24)
             padding: const EdgeInsets.all(24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,14 +134,14 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        // Kode warna 0xFFFEDF2F7 diperbaiki menjadi 0xFFEDF2F7 (asumsi)
+                        // Perbaikan kode warna Hex
                         color: const Color(0xFFEDF2F7).withOpacity(0.1),
                         borderRadius: BorderRadius.circular(16)
                       ),
                       child: const Icon(
                         Icons.playlist_add_check_circle,
                         size: 32,
-                        // Kode warna 0xFFFE91E63 diperbaiki menjadi 0xFFE91E63 (asumsi)
+                        // Perbaikan kode warna Hex
                         color: Color(0xFFE91E63)
                       ), 
                     ), 
@@ -168,7 +168,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                     children: [
                       // Item Statistik 1
                       Expanded(
-                        // Perbaikan: buildSateItem menjadi buildStatItem
                         child: buildStatItem( 
                           'Total Soal',
                           '125+',
@@ -184,7 +183,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                       ), 
                       // Item Statistik 2
                       Expanded(
-                        // Perbaikan: buildSateItem menjadi buildStatItem
                         child: buildStatItem( 
                           'Total Kategori',
                           '4',
@@ -242,7 +240,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                               ), 
                             ),
                             const SizedBox(height: 8),
-                            // Perbaikan: Tanda titik koma (;) pada style diubah menjadi koma (,)
                             const Text(
                               'Ikuti kuis acak sekarang!',
                               style: TextStyle(
@@ -259,17 +256,28 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         onPressed: () {
                           HapticFeedback.lightImpact();
                           
-                          // Pilih kategori secara acak
-                          final randomCategories = modelCategory.toList()..shuffle().first;
+                          // --- KODE PERBAIKAN UNTUK MENGAMBIL KATEGORI ACAK ---
+                          
+                          // 1. Duplikasi list agar list asli tidak berubah (toList()).
+                          final List<ModelCategory> shuffledList = modelCategory.toList();
+                          
+                          // 2. Acak list yang diduplikasi (shuffle()).
+                          shuffledList.shuffle();
+                          
+                          // 3. Ambil elemen pertama dari list yang sudah diacak (first).
+                          final ModelCategory randomCategory = shuffledList.first;
+                          
+                          // --- AKHIR KODE PERBAIKAN ---
 
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) => PageQuiz(
-                              category: randomCategories
+                              // Meneruskan objek tunggal ModelCategory yang sudah dipilih secara acak
+                              category: randomCategory
                             ),
                           ));
                         }, 
                         style: ElevatedButton.styleFrom(
-                          // Kode warna 0xFFFE91E63 diperbaiki menjadi 0xFFE91E63 (asumsi)
+                          // Perbaikan kode warna Hex
                           backgroundColor: const Color(0xFFE91E63),
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(

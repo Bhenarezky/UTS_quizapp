@@ -66,7 +66,7 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
       yourScore++;
     }
 
-    Future.delayed(Duration(milliseconds: 1500), () {
+    Future.delayed(const Duration(milliseconds: 1500), () {
       nextQuestion();
     }); // Future.delayed
   }
@@ -89,104 +89,106 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
   }
 
   @override
-Widget build(BuildContext context) {
-  final question = modelQuestion[currentQuestionIndex];
+  Widget build(BuildContext context) {
+    final question = modelQuestion[currentQuestionIndex];
 
-  return Scaffold(
-    body: Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            widget.category.strColor!.withOpacity(0.1),
-            widget.category.strColor!.withOpacity(0.05)
-          ]
-        ),
-      ), 
-      child: Padding(
-        padding: EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 32),
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PageHome()));
-                  },
-                  icon: Icon(
-                    Icons.close,
-                    size: 30,
-                    color: Color(0xFF2D3748),
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              // Tambahkan null assertion (!) karena strColor nullable
+              widget.category.strColor!.withOpacity(0.1),
+              widget.category.strColor!.withOpacity(0.05)
+            ]
+          ),
+        ), 
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 32),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const PageHome()));
+                    },
+                    icon: const Icon(
+                      Icons.close,
+                      size: 30,
+                      color: Color(0xFF2D3748),
+                    ), 
                   ), 
-                ), 
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 16),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(4),
-                    ), // BoxDecoration
-                    child: FractionallySizedBox(
-                      alignment: Alignment.centerLeft,
-                      widthFactor: (currentQuestionIndex + 1) / modelQuestion.length,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: widget.category.strColor,
-                          borderRadius: BorderRadius.circular(4),
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(4),
+                      ), // BoxDecoration
+                      child: FractionallySizedBox(
+                        alignment: Alignment.centerLeft,
+                        widthFactor: (currentQuestionIndex + 1) / modelQuestion.length,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: widget.category.strColor,
+                            borderRadius: BorderRadius.circular(4),
+                          ), 
                         ), 
                       ), 
                     ), 
+                ),
+                Text(
+                  '${currentQuestionIndex + 1}/${modelQuestion.length}',
+                  style: const TextStyle(
+                    color: Color(0xFF2D3748),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16
                   ), 
-              ),
-              Text(
-                '${currentQuestionIndex + 1}/${modelQuestion.length}',
-                style: TextStyle(
+                ), 
+              ],
+            ), 
+            const SizedBox(height: 32),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4)
+                  ) 
+                ], 
+              ), 
+              child: Text(
+                question.strText!,
+                style: const TextStyle(
                   color: Color(0xFF2D3748),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
                 ), 
               ), 
-            ],
-          ), 
-          SizedBox(height: 32),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 10,
-                  offset: Offset(0, 4)
-                ) 
-              ], 
             ), 
-            child: Text(
-              question.strText!,
-              style: TextStyle(
-                color: Color(0xFF2D3748),
-                fontSize: 18,
-                fontWeight: FontWeight.bold
-              ), 
-            ), 
-          ), 
-          SizedBox(height: 32),
-          Expanded(
-                child: ListView.builder(
-                  itemCount: question.strListOptions!.length,
-                  itemBuilder: (context, index) {
-                    return AnswerCard(
-                      text: question.strListOptions![index],
-                      isSelected: selectedAnswer == index,
-                      isCorrect: isAnswered && index == question.strCorrectAnswer,
-                      isWrong: isAnswered && index != question.strCorrectAnswer && selectedAnswer == index,
-                      onTap: () => selectAnswer(index),
-                      color: widget.category.strColor!,
+            const SizedBox(height: 32),
+            Expanded(
+              child: ListView.builder(
+                itemCount: question.strListOptions!.length,
+                itemBuilder: (context, index) {
+                  return AnswerCard(
+                    text: question.strListOptions![index],
+                    isSelected: selectedAnswer == index,
+                    // Tambahkan null assertion pada strCorrectAnswer
+                    isCorrect: isAnswered && index == question.strCorrectAnswer,
+                    isWrong: isAnswered && index != question.strCorrectAnswer && selectedAnswer == index,
+                    onTap: () => selectAnswer(index),
+                    color: widget.category.strColor!,
                   );
                 }
               ), 
@@ -194,7 +196,7 @@ Widget build(BuildContext context) {
           ],
         ),
       ), 
-    ), 
-  ); 
- }
+      )
+    ); 
+  }
 }

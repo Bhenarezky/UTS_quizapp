@@ -20,7 +20,6 @@ class PageResult extends StatefulWidget {
 
 class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
   
-  // --- Logic Getters ---
   
   String get resultMessage {
     double percentage = (widget.score / widget.totalQuestions) * 100;
@@ -48,14 +47,12 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
     }
   }
 
-  // --- UI Build Method ---
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          // Gradien latar belakang berdasarkan skor
           gradient: LinearGradient(
             colors: [
               resultColor.withOpacity(0.8),
@@ -67,14 +64,13 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
         ), // BoxDecoration
         child: Center(
           child: Padding( 
-            padding: EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // 1. Kartu Hasil (Ikon, Pesan, dan Skor)
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(32),
+                  padding: const EdgeInsets.all(32),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -82,29 +78,29 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                       BoxShadow(
                         color: Colors.black.withOpacity(0.4),
                         blurRadius: 10,
-                        offset: Offset(0, 8)
+                        offset: const Offset(0, 8)
                       ) // BoxShadow
                     ]
                   ), // BoxDecoration
                   child: Column(
                     children: [
                       // Ikon Piala
-                      Icon(
+                      const Icon(
                         Icons.emoji_events_outlined,
                         size: 80,
                         color: Colors.amber,
                       ), // Icon
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
                       // Pesan Hasil (Luar Biasa! / Coba Lagi!)
                       Text(
                         resultMessage,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF2D3748),
                         ), // TextStyle
                       ), // Text
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
                       // Label Skor
                       Text(
                         'Skor Kamu',
@@ -113,7 +109,7 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                           color: Colors.grey[300],
                         ), // TextStyle
                       ), // Text
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       // Angka Skor Utama
                       RichText(
                         text: TextSpan(
@@ -140,7 +136,7 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                   ),
                 ),
                 
-                SizedBox(height: 48),
+                const SizedBox(height: 48),
 
                 // 2. Tombol Aksi
                 Column(
@@ -164,7 +160,7 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                               category: widget.category) // PageQuiz
                           )); // MaterialPageRoute
                         },
-                        child: Text(
+                        child: const Text(
                           'Coba Lagi!',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -175,7 +171,7 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                       ), // ElevatedButton
                     ), // SizedBox
                     
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     
                     // Tombol Kembali ke Home
                     SizedBox(
@@ -184,16 +180,16 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                       child: OutlinedButton(
                         onPressed: () {
                           // Kembali ke halaman utama (push)
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => PageHome()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PageHome()));
                         },
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.white,
-                          side: BorderSide(color: Colors.white, width: 2),
+                          side: const BorderSide(color: Colors.white, width: 2),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)
                           ) 
                         ), 
-                        child: Text(
+                        child: const Text(
                           'Kembali',
                           style: TextStyle(
                             fontSize: 18,
