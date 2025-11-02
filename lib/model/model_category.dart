@@ -5,7 +5,8 @@ class ModelCategory {
   IconData? strIcon;
   Color? strColor;
   String? strDesc;
-  int? questQount;
+  // Menggunakan nama properti sesuai kode yang ada
+  int? questQount; 
 
   ModelCategory({
     required this.strName,

@@ -6,15 +6,15 @@ import 'package:quizapp/page/page_quiz.dart';
 import '../widget/category_card.dart';
 
 class PageHome extends StatefulWidget {
-  const PageHome({super.key});
+  final String userName; 
+
+  const PageHome({super.key, required this.userName}); 
 
   @override
   State<PageHome> createState() => _PageHomeState();
 }
 
 class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
-  
-  // --- Data Kategori Kuis ---
   
   List<ModelCategory> modelCategory = [
     ModelCategory(
@@ -34,7 +34,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
     ModelCategory(
       strName: 'Bahasa Inggris',
       strIcon: Icons.translate,
-      // Perbaikan kode warna Hex
       strColor: const Color(0xFFE8624A), 
       strDesc: 'Tes Kemampuan Bahasa Inggris',
       questQount: 20,
@@ -47,8 +46,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
       questQount: 30,
     ), 
   ]; 
-
-  // --- Metode Build Widget Statistik Item ---
 
   Widget buildStatItem(
     String strTitle,
@@ -79,14 +76,11 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
     ); 
   }
 
-  // --- Metode Build Halaman Utama ---
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          // Gradien latar belakang halus
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -105,14 +99,14 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
               children: [
                 const SizedBox(height: 32),
                 
-                // Header (Pesan Selamat Datang & Ikon)
+                // Header (Pesan Selamat Datang & Nama Pengguna)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Selamat datang kembali!',
                           style: TextStyle(
                             fontSize: 24,
@@ -120,10 +114,11 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                             color: Colors.black,
                           )
                         ), 
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
+                        // Menggunakan widget.userName
                         Text(
-                          'Bhenarezky',
-                          style: TextStyle(
+                          widget.userName,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
@@ -134,14 +129,12 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        // Perbaikan kode warna Hex
                         color: const Color(0xFFEDF2F7).withOpacity(0.1),
                         borderRadius: BorderRadius.circular(16)
                       ),
                       child: const Icon(
                         Icons.playlist_add_check_circle,
                         size: 32,
-                        // Perbaikan kode warna Hex
                         color: Color(0xFFE91E63)
                       ), 
                     ), 
@@ -166,7 +159,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                   ), 
                   child: Row(
                     children: [
-                      // Item Statistik 1
                       Expanded(
                         child: buildStatItem( 
                           'Total Soal',
@@ -175,13 +167,11 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                           const Color(0xFF6C63FF),
                         )
                       ), 
-                      // Pembatas Vertikal
                       Container(
                         width: 1,
                         height: 40,
                         color: Colors.grey[300],
                       ), 
-                      // Item Statistik 2
                       Expanded(
                         child: buildStatItem( 
                           'Total Kategori',
@@ -190,13 +180,11 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                           const Color(0xFF4ECDC4)
                         )
                       ), 
-                      // Pembatas Vertikal
                       Container(
                         width: 1,
                         height: 40,
                         color: Colors.grey[300],
                       ), 
-                      // Item Statistik 3
                       Expanded(
                         child: buildStatItem(
                           'Tingkat Kesulitan',
@@ -230,8 +218,8 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
+                          children: const [
+                            Text(
                               'Mulai Sekarang?',
                               style: TextStyle(
                                 fontSize: 20,
@@ -239,8 +227,8 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                                 color: Colors.black,
                               ), 
                             ),
-                            const SizedBox(height: 8),
-                            const Text(
+                            SizedBox(height: 8),
+                            Text(
                               'Ikuti kuis acak sekarang!',
                               style: TextStyle(
                                   fontSize: 14,
@@ -256,28 +244,18 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         onPressed: () {
                           HapticFeedback.lightImpact();
                           
-                          // --- KODE PERBAIKAN UNTUK MENGAMBIL KATEGORI ACAK ---
-                          
-                          // 1. Duplikasi list agar list asli tidak berubah (toList()).
                           final List<ModelCategory> shuffledList = modelCategory.toList();
-                          
-                          // 2. Acak list yang diduplikasi (shuffle()).
                           shuffledList.shuffle();
-                          
-                          // 3. Ambil elemen pertama dari list yang sudah diacak (first).
                           final ModelCategory randomCategory = shuffledList.first;
                           
-                          // --- AKHIR KODE PERBAIKAN ---
-
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) => PageQuiz(
-                              // Meneruskan objek tunggal ModelCategory yang sudah dipilih secara acak
-                              category: randomCategory
+                              category: randomCategory,
+                              userName: widget.userName // Meneruskan userName ke PageQuiz
                             ),
                           ));
                         }, 
                         style: ElevatedButton.styleFrom(
-                          // Perbaikan kode warna Hex
                           backgroundColor: const Color(0xFFE91E63),
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(
@@ -333,7 +311,8 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
 
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) => PageQuiz(
-                            category: modelCategory[index]),
+                            category: modelCategory[index],
+                            userName: widget.userName), // Meneruskan userName ke PageQuiz
                         ));
                       },
                     );

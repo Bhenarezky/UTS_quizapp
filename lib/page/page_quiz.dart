@@ -9,8 +9,9 @@ import '../widget/answer_card.dart';
 
 class PageQuiz extends StatefulWidget {
   final ModelCategory category;
+  final String userName; 
 
-  const PageQuiz({super.key, required this.category});
+  const PageQuiz({super.key, required this.category, required this.userName});
 
   @override
   State<PageQuiz> createState() => _PageQuizState();
@@ -68,7 +69,7 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
 
     Future.delayed(const Duration(milliseconds: 1500), () {
       nextQuestion();
-    }); // Future.delayed
+    });
   }
 
   void nextQuestion() {
@@ -83,8 +84,9 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
         builder: (context) => PageResult(
           score: yourScore,
           totalQuestions: modelQuestion.length,
-          category: widget.category)
-      )); // PageResult, MaterialPageRoute
+          category: widget.category,
+          userName: widget.userName)
+      )); 
     }
   }
 
@@ -99,7 +101,6 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              // Tambahkan null assertion (!) karena strColor nullable
               widget.category.strColor!.withOpacity(0.1),
               widget.category.strColor!.withOpacity(0.05)
             ]
@@ -115,7 +116,8 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const PageHome()));
+                      // Navigasi kembali ke PageHome, meneruskan userName
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PageHome(userName: widget.userName)));
                     },
                     icon: const Icon(
                       Icons.close,
@@ -129,7 +131,7 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
                       decoration: BoxDecoration(
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.circular(4),
-                      ), // BoxDecoration
+                      ),
                       child: FractionallySizedBox(
                         alignment: Alignment.centerLeft,
                         widthFactor: (currentQuestionIndex + 1) / modelQuestion.length,
@@ -141,62 +143,65 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
                         ), 
                       ), 
                     ), 
-                ),
-                Text(
-                  '${currentQuestionIndex + 1}/${modelQuestion.length}',
+                  ),
+                  Text(
+                    '${currentQuestionIndex + 1}/${modelQuestion.length}',
+                    style: const TextStyle(
+                      color: Color(0xFF2D3748),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16
+                    ), 
+                  ), 
+                ],
+              ), 
+              
+              const SizedBox(height: 32),
+
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4)
+                    ) 
+                  ], 
+                ), 
+                child: Text(
+                  question.strText!,
                   style: const TextStyle(
                     color: Color(0xFF2D3748),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold
                   ), 
                 ), 
-              ],
-            ), 
-            const SizedBox(height: 32),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4)
-                  ) 
-                ], 
               ), 
-              child: Text(
-                question.strText!,
-                style: const TextStyle(
-                  color: Color(0xFF2D3748),
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold
+              
+              const SizedBox(height: 32),
+              
+              Expanded(
+                child: ListView.builder(
+                  itemCount: question.strListOptions!.length,
+                  itemBuilder: (context, index) {
+                    return AnswerCard(
+                      text: question.strListOptions![index],
+                      isSelected: selectedAnswer == index,
+                      isCorrect: isAnswered && index == question.strCorrectAnswer,
+                      isWrong: isAnswered && index != question.strCorrectAnswer && selectedAnswer == index,
+                      onTap: () => selectAnswer(index),
+                      color: widget.category.strColor!,
+                    );
+                  }
                 ), 
               ), 
-            ), 
-            const SizedBox(height: 32),
-            Expanded(
-              child: ListView.builder(
-                itemCount: question.strListOptions!.length,
-                itemBuilder: (context, index) {
-                  return AnswerCard(
-                    text: question.strListOptions![index],
-                    isSelected: selectedAnswer == index,
-                    // Tambahkan null assertion pada strCorrectAnswer
-                    isCorrect: isAnswered && index == question.strCorrectAnswer,
-                    isWrong: isAnswered && index != question.strCorrectAnswer && selectedAnswer == index,
-                    onTap: () => selectAnswer(index),
-                    color: widget.category.strColor!,
-                  );
-                }
-              ), 
-            ), 
-          ],
-        ),
+            ],
+          ),
+        ), 
       ), 
-      )
     ); 
   }
 }

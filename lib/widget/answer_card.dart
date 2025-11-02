@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Komponen UI yang digunakan berulang
 class AnswerCard extends StatefulWidget {
   final String text;
   final bool isSelected;

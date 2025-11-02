@@ -7,19 +7,20 @@ class PageResult extends StatefulWidget {
   final int score;
   final int totalQuestions;
   final ModelCategory category;
+  final String userName; // Tambahkan properti userName
 
   const PageResult({
     super.key,
     required this.score,
     required this.totalQuestions,
-    required this.category});
+    required this.category,
+    required this.userName}); // Wajib ada di constructor
 
   @override
   State<PageResult> createState() => _PageResultState();
 }
 
 class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
-  
   
   String get resultMessage {
     double percentage = (widget.score / widget.totalQuestions) * 100;
@@ -47,7 +48,6 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,14 +60,15 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-          ), // LinearGradient
-        ), // BoxDecoration
+          ), 
+        ), 
         child: Center(
           child: Padding( 
             padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // 1. Kartu Hasil (Ikon, Pesan, dan Skor)
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(32),
@@ -79,38 +80,44 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                         color: Colors.black.withOpacity(0.4),
                         blurRadius: 10,
                         offset: const Offset(0, 8)
-                      ) // BoxShadow
+                      )
                     ]
-                  ), // BoxDecoration
+                  ),
                   child: Column(
                     children: [
-                      // Ikon Piala
                       const Icon(
                         Icons.emoji_events_outlined,
                         size: 80,
                         color: Colors.amber,
-                      ), // Icon
+                      ),
                       const SizedBox(height: 24),
-                      // Pesan Hasil (Luar Biasa! / Coba Lagi!)
                       Text(
                         resultMessage,
                         style: const TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF2D3748),
-                        ), // TextStyle
-                      ), // Text
+                        ),
+                      ),
                       const SizedBox(height: 24),
-                      // Label Skor
+                      // Tambahkan nama pengguna di sini jika perlu, contoh:
+                      /*
+                      Text(
+                        'Skor ${widget.userName}',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey[300],
+                        ),
+                      ),
+                      */
                       Text(
                         'Skor Kamu',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.grey[300],
-                        ), // TextStyle
-                      ), // Text
+                        ),
+                      ),
                       const SizedBox(height: 8),
-                      // Angka Skor Utama
                       RichText(
                         text: TextSpan(
                           children: [
@@ -120,15 +127,15 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                                 fontSize: 48,
                                 fontWeight: FontWeight.bold,
                                 color: resultColor,
-                              ), // TextStyle
-                            ), // TextSpan
+                              ),
+                            ),
                             TextSpan(
                               text: '/${widget.totalQuestions}',
                               style: TextStyle(
                                 fontSize: 24,
                                 color: Colors.grey[300],
-                              ), // TextStyle
-                            ) // TextSpan
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -141,7 +148,7 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                 // 2. Tombol Aksi
                 Column(
                   children: [
-                    // Tombol Coba Lagi!
+                    // Tombol Coba Lagi! (Mengulang Kuis)
                     SizedBox(
                       width: double.infinity,
                       height: 60,
@@ -150,15 +157,16 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
-                          ), // RoundedRectangleBorder
+                          ),
                           elevation: 8,
-                        ), // ElevatedButton.styleFrom
+                        ),
                         onPressed: () {
-                          // Mulai kuis lagi (pushReplacement)
+                          // Navigasi ke PageQuiz, meneruskan userName
                           Navigator.pushReplacement(context, MaterialPageRoute(
                             builder: (context) => PageQuiz(
-                              category: widget.category) // PageQuiz
-                          )); // MaterialPageRoute
+                              category: widget.category,
+                              userName: widget.userName) // Meneruskan userName
+                          ));
                         },
                         child: const Text(
                           'Coba Lagi!',
@@ -166,10 +174,10 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                             color: Color(0xFF2D3748),
-                          ), // TextStyle
-                        ), // Text
-                      ), // ElevatedButton
-                    ), // SizedBox
+                          ),
+                        ),
+                      ),
+                    ),
                     
                     const SizedBox(height: 16),
                     
@@ -179,8 +187,8 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                       height: 60,
                       child: OutlinedButton(
                         onPressed: () {
-                          // Kembali ke halaman utama (push)
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PageHome()));
+                          // Navigasi ke PageHome, meneruskan userName
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => PageHome(userName: widget.userName)));
                         },
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.white,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/model/model_category.dart';
 
+// Komponen UI yang digunakan berulang
 class CategoryCard extends StatefulWidget {
   final ModelCategory category;
   final VoidCallback onTap;
