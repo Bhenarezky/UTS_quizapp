@@ -23,6 +23,9 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
   int? selectedAnswer;
   bool isAnswered = false;
 
+  final Color primaryBackground = const Color(0xFF1E2749); 
+  final Color surfaceColor = const Color(0xFF27335C); 
+
   // Data Soal Dinamis Berdasarkan Kategori
   static final Map<String, List<ModelQuestion>> _questionMap = {
     'Umum': [
@@ -81,7 +84,6 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
       yourScore++;
     }
     
-    // Perbaikan: Hapus const dari Future.delayed
     Future.delayed(const Duration(milliseconds: 1500), () { 
       nextQuestion();
     });
@@ -110,15 +112,13 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
     final question = selectedQuestionList[currentQuestionIndex];
 
     return Scaffold(
-      // Latar belakang solid kontras berdasarkan warna kategori
-      backgroundColor: widget.category.strColor!.withOpacity(1.0), 
+      backgroundColor: primaryBackground, // Latar belakang gelap
       body: Container(
-        // Desain: Konten utama di dalam card putih untuk kontras
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+        decoration: BoxDecoration(
+          color: surfaceColor, // Konten utama di Surface Color
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(0), // Sudut tajam di atas
+            topRight: Radius.circular(0),
           )
         ),
         child: Padding(
@@ -135,20 +135,19 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => PageHome(userName: widget.userName)));
                     },
-                    // Tombol 'Kembali' lebih menonjol
                     icon: const Icon(
                       Icons.arrow_back_ios,
                       size: 24,
-                      color: Color(0xFF2D3748),
+                      color: Colors.white70, // Ikon putih
                     ), 
                   ), 
                   const SizedBox(width: 8),
                   Expanded(
                     child: Container(
-                      height: 8, // Bar progress lebih tipis
+                      height: 10, // Bar progress sedikit lebih tebal
                       decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(4),
+                        color: Colors.white12, // Latar belakang bar gelap
+                        borderRadius: BorderRadius.circular(5),
                       ),
                       child: FractionallySizedBox(
                         alignment: Alignment.centerLeft,
@@ -156,7 +155,7 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
                         child: Container(
                           decoration: BoxDecoration(
                             color: widget.category.strColor,
-                            borderRadius: BorderRadius.circular(4),
+                            borderRadius: BorderRadius.circular(5),
                           ), 
                         ), 
                       ), 
@@ -166,7 +165,7 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
                   Text(
                     '${currentQuestionIndex + 1}/${selectedQuestionList.length}',
                     style: const TextStyle(
-                      color: Color(0xFF2D3748),
+                      color: Colors.white, // Teks putih
                       fontWeight: FontWeight.bold,
                       fontSize: 16
                     ), 
@@ -181,21 +180,21 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
                 'Kategori: ${widget.category.strName}',
                 style: TextStyle(
                   fontSize: 14,
-                  color: widget.category.strColor
+                  color: widget.category.strColor // Warna kategori
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16), // Spasi lebih besar
               
               // Kartu Pertanyaan
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF8F9FF), 
-                  borderRadius: BorderRadius.circular(20),
+                  color: primaryBackground, // Warna latar belakang kartu soal (lebih gelap)
+                  borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withOpacity(0.4),
                       blurRadius: 10,
                       offset: const Offset(0, 4)
                     ) 
@@ -204,15 +203,16 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
                 child: Text(
                   question.strText!,
                   style: const TextStyle(
-                    color: Color(0xFF2D3748),
+                    color: Colors.white, // Teks putih
                     fontSize: 18,
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.w600
                   ), 
                 ), 
               ), 
               
               const SizedBox(height: 32),
               
+              // Daftar Opsi Jawaban (AnswerCard)
               Expanded(
                 child: ListView.builder(
                   itemCount: question.strListOptions!.length,

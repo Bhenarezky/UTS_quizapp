@@ -10,6 +10,8 @@ class PageLogin extends StatefulWidget {
 
 class _PageLoginState extends State<PageLogin> {
   final TextEditingController _nameController = TextEditingController();
+  // Warna Latar Belakang Baru
+  final Color primaryBackground = const Color(0xFF1E2749); 
 
   void _navigateToHome() {
     final String userName = _nameController.text.trim();
@@ -40,7 +42,7 @@ class _PageLoginState extends State<PageLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF0F2FF),
+      backgroundColor: primaryBackground,
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(32.0),
@@ -51,13 +53,13 @@ class _PageLoginState extends State<PageLogin> {
               Container(
                 padding: const EdgeInsets.all(32.0),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white, // Kartu tetap putih untuk kontras tajam
+                  borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.08),
-                      blurRadius: 15,
-                      offset: const Offset(0, 5),
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 20,
+                      offset: const Offset(0, 8),
                     ),
                   ],
                 ),
@@ -65,13 +67,13 @@ class _PageLoginState extends State<PageLogin> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const Icon(
-                      Icons.school, 
+                      Icons.school,
                       size: 80,
-                      color: Color(0xFFE91E63),
+                      color: Color(0xFFFFD700), // Aksen Gold
                     ),
                     const SizedBox(height: 24),
                     const Text(
-                      'Selamat Datang di EduQuiz!', 
+                      'Selamat Datang di EduQuiz!',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 28,
@@ -90,16 +92,17 @@ class _PageLoginState extends State<PageLogin> {
                     const SizedBox(height: 32),
                     TextField(
                       controller: _nameController,
+                      style: const TextStyle(color: Color(0xFF2D3748)), // Teks input gelap
                       decoration: InputDecoration(
                         labelText: 'Nama Pengguna',
                         labelStyle: const TextStyle(color: Color(0xFF6C63FF)),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Color(0xFFC0C0C0), width: 1),
+                          borderSide: BorderSide(color: Colors.grey.shade300, width: 1),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Color(0xFF6C63FF), width: 2),
+                          borderSide: const BorderSide(color: Color(0xFFFFD700), width: 2),
                         ),
                         filled: true,
                         fillColor: Color(0xFFF8F9FF),
@@ -115,12 +118,12 @@ class _PageLoginState extends State<PageLogin> {
                       child: ElevatedButton(
                         onPressed: _navigateToHome,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF6C63FF), // Mengganti warna tombol utama
-                          foregroundColor: Colors.white,
+                          backgroundColor: const Color(0xFFFFD700), // Tombol utama Aksen Gold
+                          foregroundColor: const Color(0xFF2D3748), // Teks gelap
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          elevation: 5,
+                          elevation: 0,
                         ),
                         child: const Text(
                           'Mulai Kuis',

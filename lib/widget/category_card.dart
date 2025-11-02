@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/model/model_category.dart';
 
-// Komponen UI yang digunakan berulang
 class CategoryCard extends StatefulWidget {
   final ModelCategory category;
   final VoidCallback onTap;
@@ -13,68 +12,75 @@ class CategoryCard extends StatefulWidget {
 }
 
 class _CategoryCardState extends State<CategoryCard> with SingleTickerProviderStateMixin {
+  
+  final Color surfaceColor = const Color(0xFF27335C); 
+  final Color primaryBackground = const Color(0xFF1E2749); 
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          color: surfaceColor,
+          borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: widget.category.strColor!.withOpacity(0.3),
-              blurRadius: 20,
-              offset: const Offset(0, 8)
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 10,
+              offset: const Offset(0, 4)
             ) 
           ]
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Kontainer Ikon
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: widget.category.strColor!.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(16)
+                color: widget.category.strColor!.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(12)
               ), 
               child: Icon(
                 widget.category.strIcon,
-                size: 32,
+                size: 36, // Ikon lebih besar
                 color: widget.category.strColor,
               ), 
             ), 
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
+            // Nama Kategori
             Text(
               widget.category.strName!,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF2D3748)
+                color: Colors.white
               ),
             ), 
             const SizedBox(height: 4),
             Padding(
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
                 widget.category.strDesc!,
                 style: const TextStyle(
                   fontSize: 12,
-                  color: Color(0xFF4A5568)
+                  color: Colors.white60
                 ), 
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ), 
             ), 
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
+            // Badge Jumlah Soal
             Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 8,
                 vertical: 4,
               ),
               decoration: BoxDecoration(
-                color: widget.category.strColor!.withOpacity(0.1),
+                color: primaryBackground, 
                 borderRadius: BorderRadius.circular(8)
               ), 
               child: Text(

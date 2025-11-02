@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Komponen UI yang digunakan berulang
 class AnswerCard extends StatefulWidget {
   final String text;
   final bool isSelected;
@@ -25,18 +24,22 @@ class AnswerCard extends StatefulWidget {
 
 class _AnswerCardState extends State<AnswerCard> with SingleTickerProviderStateMixin {
 
+  final Color cardDefaultColor = const Color(0xFF1E2749); // Latar belakang kartu default (Dark Navy)
+
   Color get cardColor {
-    if (widget.isCorrect) return Colors.green;
-    if (widget.isWrong) return Colors.redAccent;
+    if (widget.isCorrect) return Colors.green.shade600;
+    if (widget.isWrong) return Colors.redAccent.shade700;
     if (widget.isSelected) return widget.color;
-    return Colors.white;
+    return cardDefaultColor;
   }
 
   Color get textColor {
+    // Teks putih ketika jawaban dipilih, benar, atau salah
     if (widget.isCorrect || widget.isWrong || widget.isSelected) {
       return Colors.white;
     }
-    return const Color(0xFF2D3748);
+    // Teks abu-abu terang pada latar belakang gelap
+    return Colors.white70; 
   } 
 
   @override
@@ -48,12 +51,12 @@ class _AnswerCardState extends State<AnswerCard> with SingleTickerProviderStateM
         child: Container(
           decoration: BoxDecoration(
             color: cardColor,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(12), // Sudut lebih kecil dan tegas
             boxShadow: [
               BoxShadow(
-                color: widget.color.withOpacity(0.3),
-                blurRadius: 20,
-                offset: const Offset(0, 8)
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 10,
+                offset: const Offset(0, 4)
               )
             ], 
           ), 
@@ -66,15 +69,16 @@ class _AnswerCardState extends State<AnswerCard> with SingleTickerProviderStateM
                     widget.text,
                     style: TextStyle(
                       color: textColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ), 
                   ), 
                 ), 
+                // Ikon Feedback
                 if (widget.isCorrect) 
-                  const Icon(Icons.check_circle, color: Colors.white, size: 24),
+                  const Icon(Icons.check_circle_outline, color: Colors.white, size: 24),
                 if (widget.isWrong)
-                  const Icon(Icons.cancel, color: Colors.white, size: 24),
+                  const Icon(Icons.highlight_off, color: Colors.white, size: 24),
               ],  
             ), 
           ), 

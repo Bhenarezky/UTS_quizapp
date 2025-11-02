@@ -22,6 +22,8 @@ class PageResult extends StatefulWidget {
 
 class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
   
+  final Color primaryBackground = const Color(0xFF1E2749); 
+  
   String get resultMessage {
     double percentage = (widget.score / widget.totalQuestions) * 100;
     if (percentage >= 80) {
@@ -38,35 +40,36 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
   Color get resultColor {
     double percentage = (widget.score / widget.totalQuestions) * 100;
     if (percentage >= 80) {
-      return Colors.green;
+      return Colors.green.shade600;
     } else if (percentage >= 60) {
-      return Colors.blueAccent;
+      return Colors.blueAccent.shade400;
     } else if (percentage >= 40) {
-      return Colors.orange;
+      return Colors.orange.shade700;
     } else {
-      return Colors.redAccent;
+      return Colors.redAccent.shade700;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: resultColor,
+      backgroundColor: primaryBackground,
       body: Center(
         child: Padding( 
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // 1. Kartu Hasil
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(32),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20), 
+                  borderRadius: BorderRadius.circular(16), 
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withOpacity(0.3),
                       blurRadius: 20,
                       offset: const Offset(0, 10)
                     )
@@ -74,26 +77,26 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                 ),
                 child: Column(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.emoji_events_outlined,
                       size: 80,
-                      color: Colors.amber,
+                      color: resultColor, // Ikon mengikuti warna hasil
                     ),
                     const SizedBox(height: 24),
                     Text(
                       resultMessage,
                       style: const TextStyle(
-                        fontSize: 28,
+                        fontSize: 32, // Lebih besar
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF2D3748),
                       ),
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'Skor Kamu',
+                      'Skor ${widget.userName}',
                       style: TextStyle(
                         fontSize: 18,
-                        color: Colors.grey[400], 
+                        color: Colors.grey.shade600, 
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -103,7 +106,7 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                           TextSpan(
                             text: '${widget.score}',
                             style: TextStyle(
-                              fontSize: 60, 
+                              fontSize: 64, // Paling besar
                               fontWeight: FontWeight.w900,
                               color: resultColor,
                             ),
@@ -111,8 +114,8 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                           TextSpan(
                             text: '/${widget.totalQuestions}',
                             style: TextStyle(
-                              fontSize: 30, 
-                              color: Colors.grey[400],
+                              fontSize: 32, 
+                              color: Colors.grey.shade400,
                             ),
                           )
                         ],
@@ -124,19 +127,21 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
               
               const SizedBox(height: 48),
 
+              // 2. Tombol Aksi
               Column(
                 children: [
+                  // Tombol Utama: Coba Lagi! (Warna Solid Kontras)
                   SizedBox(
                     width: double.infinity,
                     height: 60,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: resultColor, 
+                        backgroundColor: resultColor, // Warna hasil sebagai latar tombol
+                        foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        elevation: 0, 
+                        elevation: 5,
                       ),
                       onPressed: () {
                         Navigator.pushReplacement(context, MaterialPageRoute(
@@ -157,6 +162,7 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                   
                   const SizedBox(height: 16),
                   
+                  // Tombol Sekunder: Kembali ke Home (Outline)
                   SizedBox(
                     width: double.infinity,
                     height: 60,
@@ -166,16 +172,16 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                       },
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        side: const BorderSide(color: Colors.white, width: 2),
+                        side: const BorderSide(color: Colors.white38, width: 2), // Outline lebih tipis
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)
+                          borderRadius: BorderRadius.circular(12)
                         ) 
                       ), 
                       child: const Text(
                         'Kembali',
                         style: TextStyle(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.w600
                         ),
                       ),
                     ),
