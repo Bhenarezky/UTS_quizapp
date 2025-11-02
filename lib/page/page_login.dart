@@ -22,7 +22,6 @@ class _PageLoginState extends State<PageLogin> {
         ),
       );
     } else {
-      // Menampilkan peringatan jika nama kosong
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Nama tidak boleh kosong!'),
@@ -41,74 +40,98 @@ class _PageLoginState extends State<PageLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFFF8F9FF),
-              Color(0xFFE8EAFF),
-              Color(0xFFF0F2FF)
-            ],
-          ),
-        ),
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.person_pin,
-                  size: 80,
-                  color: Color(0xFF6C63FF),
-                ),
-                const SizedBox(height: 24),
-                const Text(
-                  'Masukkan Nama Anda',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2D3748),
-                  ),
-                ),
-                const SizedBox(height: 32),
-                TextField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    labelText: 'Nama Pengguna',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+      backgroundColor: const Color(0xFFF0F2FF),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(32.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.08),
+                      blurRadius: 15,
+                      offset: const Offset(0, 5),
                     ),
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
-                  textInputAction: TextInputAction.done,
-                  onSubmitted: (_) => _navigateToHome(),
+                  ],
                 ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: _navigateToHome,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFE91E63),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      Icons.school, 
+                      size: 80,
+                      color: Color(0xFFE91E63),
+                    ),
+                    const SizedBox(height: 24),
+                    const Text(
+                      'Selamat Datang di EduQuiz!', 
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2D3748),
                       ),
                     ),
-                    child: const Text(
-                      'Mulai Kuis',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Masukkan nama Anda untuk memulai kuis.',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4A5568),
+                      ),
                     ),
-                  ),
+                    const SizedBox(height: 32),
+                    TextField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        labelText: 'Nama Pengguna',
+                        labelStyle: const TextStyle(color: Color(0xFF6C63FF)),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Color(0xFFC0C0C0), width: 1),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Color(0xFF6C63FF), width: 2),
+                        ),
+                        filled: true,
+                        fillColor: Color(0xFFF8F9FF),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14)
+                      ),
+                      textInputAction: TextInputAction.done,
+                      onSubmitted: (_) => _navigateToHome(),
+                    ),
+                    const SizedBox(height: 24),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: _navigateToHome,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF6C63FF), // Mengganti warna tombol utama
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          elevation: 5,
+                        ),
+                        child: const Text(
+                          'Mulai Kuis',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

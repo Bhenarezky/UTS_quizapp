@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
         visualDensity: VisualDensity.adaptivePlatformDensity
       ),
-      home: const PageLogin(), // Mengubah PageHome menjadi PageLogin
+      home: const PageLogin(),
     );
   }
 }
