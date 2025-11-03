@@ -41,7 +41,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
           strValue,
           style: const TextStyle(
             fontSize: 18,
-            color: Colors.white, // Teks Putih
+            color: Colors.white, 
             fontWeight: FontWeight.w900,
           ), 
         ), 
@@ -50,7 +50,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
           strTitle,
           style: const TextStyle(
             fontSize: 10,
-            color: Colors.white70, // Teks Abu-abu Terang
+            color: Colors.white70, 
           ), 
         ), 
       ], 
@@ -69,7 +69,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
             children: [
               const SizedBox(height: 32),
               
-              // Header
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -81,7 +80,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w300,
-                          color: Colors.white70, // Teks Putih
+                          color: Colors.white70, 
                         )
                       ), 
                       const SizedBox(height: 4),
@@ -90,7 +89,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white, // Teks Putih
+                          color: Colors.white, 
                         )
                       ), 
                     ],
@@ -98,7 +97,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: surfaceColor, // Kartu Ikon Surface Color
+                      color: surfaceColor, 
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                          BoxShadow(
@@ -111,7 +110,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                     child: Icon(
                       Icons.notifications_none,
                       size: 28,
-                      color: mainAccent, // Ikon Aksen
+                      color: mainAccent, 
                     ), 
                   ), 
                 ], 
@@ -171,7 +170,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF2D3748), // Teks gelap pada aksen terang
+                              color: Color(0xFF2D3748), 
                             ), 
                           ),
                           SizedBox(height: 8),
@@ -202,7 +201,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         ));
                       }, 
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: surfaceColor, // Tombol kontras di atas aksen
+                        backgroundColor: surfaceColor, 
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
@@ -237,7 +236,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
               
               const SizedBox(height: 20),
               
-              // Grid Kategori
               GridView.builder(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,

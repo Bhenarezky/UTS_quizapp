@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Montserrat', 
         useMaterial3: false,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
         visualDensity: VisualDensity.adaptivePlatformDensity

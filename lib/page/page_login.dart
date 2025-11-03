@@ -10,7 +10,6 @@ class PageLogin extends StatefulWidget {
 
 class _PageLoginState extends State<PageLogin> {
   final TextEditingController _nameController = TextEditingController();
-  // Warna Latar Belakang Baru
   final Color primaryBackground = const Color(0xFF1E2749); 
 
   void _navigateToHome() {
@@ -53,7 +52,7 @@ class _PageLoginState extends State<PageLogin> {
               Container(
                 padding: const EdgeInsets.all(32.0),
                 decoration: BoxDecoration(
-                  color: Colors.white, // Kartu tetap putih untuk kontras tajam
+                  color: Colors.white, 
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
@@ -69,7 +68,7 @@ class _PageLoginState extends State<PageLogin> {
                     const Icon(
                       Icons.school,
                       size: 80,
-                      color: Color(0xFFFFD700), // Aksen Gold
+                      color: Color(0xFFFFD700), 
                     ),
                     const SizedBox(height: 24),
                     const Text(
@@ -92,10 +91,10 @@ class _PageLoginState extends State<PageLogin> {
                     const SizedBox(height: 32),
                     TextField(
                       controller: _nameController,
-                      style: const TextStyle(color: Color(0xFF2D3748)), // Teks input gelap
+                      style: const TextStyle(color: Color(0xFF2D3748)),
                       decoration: InputDecoration(
                         labelText: 'Nama Pengguna',
-                        labelStyle: const TextStyle(color: Color(0xFF6C63FF)),
+                        labelStyle: const TextStyle(color: Color.fromARGB(255, 59, 59, 60)),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide(color: Colors.grey.shade300, width: 1),
@@ -118,8 +117,8 @@ class _PageLoginState extends State<PageLogin> {
                       child: ElevatedButton(
                         onPressed: _navigateToHome,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFFFD700), // Tombol utama Aksen Gold
-                          foregroundColor: const Color(0xFF2D3748), // Teks gelap
+                          backgroundColor: const Color(0xFFFFD700),
+                          foregroundColor: const Color(0xFF2D3748),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),

@@ -80,7 +80,7 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                     Icon(
                       Icons.emoji_events_outlined,
                       size: 80,
-                      color: resultColor, // Ikon mengikuti warna hasil
+                      color: resultColor,
                     ),
                     const SizedBox(height: 24),
                     Text(
@@ -127,16 +127,14 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
               
               const SizedBox(height: 48),
 
-              // 2. Tombol Aksi
               Column(
                 children: [
-                  // Tombol Utama: Coba Lagi! (Warna Solid Kontras)
                   SizedBox(
                     width: double.infinity,
                     height: 60,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: resultColor, // Warna hasil sebagai latar tombol
+                        backgroundColor: resultColor,
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -162,7 +160,6 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                   
                   const SizedBox(height: 16),
                   
-                  // Tombol Sekunder: Kembali ke Home (Outline)
                   SizedBox(
                     width: double.infinity,
                     height: 60,
@@ -172,7 +169,7 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
                       },
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        side: const BorderSide(color: Colors.white38, width: 2), // Outline lebih tipis
+                        side: const BorderSide(color: Colors.white38, width: 2), 
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)
                         ) 

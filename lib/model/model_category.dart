@@ -5,7 +5,6 @@ class ModelCategory {
   IconData? strIcon;
   Color? strColor;
   String? strDesc;
-  // Menggunakan nama properti sesuai kode yang ada
   int? questQount; 
 
   ModelCategory({
