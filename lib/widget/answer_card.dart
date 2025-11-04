@@ -34,11 +34,9 @@ class _AnswerCardState extends State<AnswerCard> with SingleTickerProviderStateM
   }
 
   Color get textColor {
-    // Teks putih ketika jawaban dipilih, benar, atau salah
     if (widget.isCorrect || widget.isWrong || widget.isSelected) {
       return Colors.white;
     }
-    // Teks abu-abu terang pada latar belakang gelap
     return Colors.white70; 
   } 
 

@@ -35,7 +35,6 @@ class _CategoryCardState extends State<CategoryCard> with SingleTickerProviderSt
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Kontainer Ikon
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -73,7 +72,6 @@ class _CategoryCardState extends State<CategoryCard> with SingleTickerProviderSt
               ), 
             ), 
             const SizedBox(height: 12),
-            // Badge Jumlah Soal
             Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 8,

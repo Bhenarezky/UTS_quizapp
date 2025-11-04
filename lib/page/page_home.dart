@@ -34,23 +34,35 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
     IconData strIcon,
     Color strColor) {
     return Column(
+
+      crossAxisAlignment: CrossAxisAlignment.center, 
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(strIcon, color: strColor, size: 28),
         const SizedBox(height: 6),
-        Text(
-          strValue,
-          style: const TextStyle(
-            fontSize: 18,
-            color: Colors.white, 
-            fontWeight: FontWeight.w900,
+        Center(
+          child: FittedBox( 
+            fit: BoxFit.scaleDown,
+            child: Text(
+              strValue,
+              textAlign: TextAlign.center, 
+              style: const TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+              ), 
+            ), 
           ), 
         ), 
         const SizedBox(height: 2),
-        Text(
-          strTitle,
-          style: const TextStyle(
-            fontSize: 10,
-            color: Colors.white70, 
+        Center(
+          child: Text(
+            strTitle,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 10,
+              color: Colors.white70,
+            ), 
           ), 
         ), 
       ], 
@@ -80,7 +92,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w300,
-                          color: Colors.white70, 
+                          color: Colors.white70,
                         )
                       ), 
                       const SizedBox(height: 4),
@@ -89,7 +101,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white, 
+                          color: Colors.white,
                         )
                       ), 
                     ],
@@ -97,7 +109,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: surfaceColor, 
+                      color: surfaceColor,
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                          BoxShadow(
@@ -110,7 +122,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                     child: Icon(
                       Icons.notifications_none,
                       size: 28,
-                      color: mainAccent, 
+                      color: mainAccent,
                     ), 
                   ), 
                 ], 
@@ -118,11 +130,10 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
               
               const SizedBox(height: 32),
 
-              // Card Statistik Kuis
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: surfaceColor, // Warna Surface
+                  color: surfaceColor,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
@@ -135,7 +146,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                 child: Row(
                   children: [
                     Expanded(child: buildStatItem('Total Soal', '25+', Icons.quiz, const Color(0xFF6C63FF))), 
-                    Container(width: 1, height: 40, color: Colors.white10), // Pembatas gelap
+                    Container(width: 1, height: 40, color: Colors.white10),
                     Expanded(child: buildStatItem('Total Kategori', '5', Icons.category, const Color(0xFF4ECDC4))), 
                     Container(width: 1, height: 40, color: Colors.white10), 
                     Expanded(child: buildStatItem('Tingkat Kesulitan', 'Menengah', Icons.trending_up, const Color(0xFFFF9800))),
@@ -145,11 +156,10 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
               
               const SizedBox(height: 32),
 
-              // Card Mulai Kuis Acak
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: mainAccent, // Warna Aksen Utama
+                  color: mainAccent,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
@@ -170,7 +180,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF2D3748), 
+                              color: Color(0xFF2D3748),
                             ), 
                           ),
                           SizedBox(height: 8),
@@ -201,7 +211,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         ));
                       }, 
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: surfaceColor, 
+                        backgroundColor: surfaceColor,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,

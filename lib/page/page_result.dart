@@ -60,7 +60,6 @@ class _PageResultState extends State<PageResult> with TickerProviderStateMixin {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // 1. Kartu Hasil
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(32),

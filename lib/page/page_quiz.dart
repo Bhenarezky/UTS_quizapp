@@ -26,7 +26,6 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
   final Color primaryBackground = const Color(0xFF1E2749); 
   final Color surfaceColor = const Color(0xFF27335C); 
 
-  // Data Soal Dinamis Berdasarkan Kategori
   static final Map<String, List<ModelQuestion>> _questionMap = {
     'Umum': [
       ModelQuestion(strText: 'Siapakah presiden pertama Indonesia?', strListOptions: ['Soekarno', 'Soeharto', 'Jokowi', 'B.J. Habibie'], strCorrectAnswer: 0),
@@ -175,7 +174,6 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
               
               const SizedBox(height: 32),
 
-              // Kategori dan Soal
               Text(
                 'Kategori: ${widget.category.strName}',
                 style: TextStyle(
@@ -185,7 +183,6 @@ class _PageQuizState extends State<PageQuiz> with TickerProviderStateMixin {
               ),
               const SizedBox(height: 16), 
               
-              // Kartu Pertanyaan
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(24),
