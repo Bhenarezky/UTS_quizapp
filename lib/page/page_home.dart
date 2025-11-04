@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quizapp/model/model_category.dart';
 import 'package:quizapp/page/page_quiz.dart';
-
 import '../widget/category_card.dart';
 
 class PageHome extends StatefulWidget {
@@ -34,39 +33,31 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
     IconData strIcon,
     Color strColor) {
     return Column(
-
-      crossAxisAlignment: CrossAxisAlignment.center, 
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Icon(strIcon, color: strColor, size: 28),
         const SizedBox(height: 6),
-        Center(
-          child: FittedBox( 
-            fit: BoxFit.scaleDown,
-            child: Text(
-              strValue,
-              textAlign: TextAlign.center, 
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.w900,
-              ), 
-            ), 
-          ), 
-        ), 
+        Text(
+          strValue,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
         const SizedBox(height: 2),
-        Center(
-          child: Text(
-            strTitle,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 10,
-              color: Colors.white70,
-            ), 
-          ), 
-        ), 
-      ], 
-    ); 
+        Text(
+          strTitle,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 10,
+            color: Colors.white70,
+          ),
+        ),
+      ],
+    );
   }
 
   @override
@@ -93,7 +84,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                           fontSize: 20,
                           fontWeight: FontWeight.w300,
                           color: Colors.white70,
-                        )
+                        ),
                       ), 
                       const SizedBox(height: 4),
                       Text(
@@ -102,7 +93,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
-                        )
+                        ),
                       ), 
                     ],
                   ), 
@@ -112,7 +103,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                       color: surfaceColor,
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
-                         BoxShadow(
+                        BoxShadow(
                           color: Colors.black.withOpacity(0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
@@ -139,20 +130,39 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                     BoxShadow(
                       color: Colors.black.withOpacity(0.2),
                       blurRadius: 10,
-                      offset: const Offset(0, 5)
+                      offset: const Offset(0, 5),
                     ), 
-                  ]
+                  ],
                 ), 
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(child: buildStatItem('Total Soal', '25+', Icons.quiz, const Color(0xFF6C63FF))), 
+                    Expanded(
+                      child: Center( 
+                        child: buildStatItem(
+                          'Total Soal', '25+', Icons.quiz, const Color(0xFF6C63FF),
+                        ),
+                      ),
+                    ),
                     Container(width: 1, height: 40, color: Colors.white10),
-                    Expanded(child: buildStatItem('Total Kategori', '5', Icons.category, const Color(0xFF4ECDC4))), 
-                    Container(width: 1, height: 40, color: Colors.white10), 
-                    Expanded(child: buildStatItem('Tingkat Kesulitan', 'Menengah', Icons.trending_up, const Color(0xFFFF9800))),
-                  ], 
-                ), 
-              ), 
+                    Expanded(
+                      child: Center(
+                        child: buildStatItem(
+                          'Total Kategori', '5', Icons.category, const Color(0xFF4ECDC4),
+                        ),
+                      ),
+                    ),
+                    Container(width: 1, height: 40, color: Colors.white10),
+                    Expanded(
+                      child: Center(
+                        child: buildStatItem(
+                          'Tingkat Kesulitan', 'Sulit', Icons.trending_up, const Color(0xFFFF9800),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               
               const SizedBox(height: 32),
 
@@ -165,9 +175,9 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                     BoxShadow(
                       color: mainAccent.withOpacity(0.4),
                       blurRadius: 10,
-                      offset: const Offset(0, 5)
+                      offset: const Offset(0, 5),
                     ), 
-                  ]
+                  ],
                 ), 
                 child: Row(
                   children: [
@@ -181,18 +191,18 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF2D3748),
-                            ), 
+                            ),
                           ),
                           SizedBox(height: 8),
                           Text(
                             'Mulai kuis dari kategori acak sekarang!',
                             style: TextStyle(
-                                fontSize: 14,
-                                color : Color(0xFF2D3748)
+                              fontSize: 14,
+                              color: Color(0xFF2D3748),
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ),
                     const SizedBox(width: 16),
                     ElevatedButton(
@@ -206,7 +216,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) => PageQuiz(
                             category: randomCategory,
-                            userName: widget.userName
+                            userName: widget.userName,
                           ),
                         ));
                       }, 
@@ -218,7 +228,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                           vertical: 10,
                         ), 
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)
+                          borderRadius: BorderRadius.circular(12),
                         ),
                         elevation: 0,
                       ),
@@ -240,7 +250,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white
+                  color: Colors.white,
                 ), 
               ),
               
@@ -262,11 +272,11 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                     category: modelCategory[index],
                     onTap: () {
                       HapticFeedback.lightImpact();
-
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) => PageQuiz(
                           category: modelCategory[index],
-                          userName: widget.userName),
+                          userName: widget.userName,
+                        ),
                       ));
                     },
                   );
