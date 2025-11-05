@@ -26,8 +26,7 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
     ModelCategory(strName: 'Sejarah', strIcon: Icons.history_edu, strColor: const Color(0xFF28C8BD), strDesc: 'Tes Kemampuan Sejarah', questQount: 5), 
   ]; 
 
-  // --- Widget untuk Item Statistik Simetris ---
-  // Menggunakan Expanded agar lebar masing-masing kartu sama (simetris)
+
   Widget buildStatItem(
       String strTitle,
       String strValue,
@@ -35,9 +34,9 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
       Color strColor) {
     return Expanded( 
       child: Container(
-        height: 120, // Tinggi tetap untuk simetris
+        height: 120, 
         padding: const EdgeInsets.all(12),
-        margin: const EdgeInsets.symmetric(horizontal: 6), // Jarak antar kartu
+        margin: const EdgeInsets.symmetric(horizontal: 6),
         decoration: BoxDecoration(
           color: surfaceColor.withOpacity(0.8),
           borderRadius: BorderRadius.circular(12),
@@ -70,7 +69,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
     ); 
   }
 
-  // --- Widget untuk Category Tile (Menggantikan CategoryCard) ---
   Widget buildCategoryTile(ModelCategory category, String userName) {
     return InkWell(
       onTap: () {
@@ -88,7 +86,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
         decoration: BoxDecoration(
           color: surfaceColor,
           borderRadius: BorderRadius.circular(12),
-          // Aksen warna di sisi kiri
           border: Border(left: BorderSide(color: category.strColor!, width: 5)),
           boxShadow: [
             BoxShadow(
@@ -132,7 +129,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
     );
   }
 
-  // Fungsi Kuis Acak
   void _startRandomQuiz() {
       HapticFeedback.lightImpact();
       final List<ModelCategory> shuffledList = modelCategory.toList();
@@ -153,7 +149,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
       backgroundColor: primaryBackground,
       body: CustomScrollView(
         slivers: [
-          // Header Kustom menggunakan SliverAppBar
           SliverAppBar(
             backgroundColor: primaryBackground,
             expandedHeight: 200.0, 
@@ -225,13 +220,11 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
             ),
           ),
 
-          // Area Body Utama (Statistik + Kategori)
           SliverList(
             delegate: SliverChildListDelegate(
               [
                 const SizedBox(height: 24),
                 
-                // Judul Statistik
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
@@ -246,21 +239,15 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
 
                 const SizedBox(height: 16),
 
-                // Card Statistik Kuis (ROW SIMETRIS dengan Expanded)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18), 
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // 1. Total Soal
                       buildStatItem('Total Soal', '25+', Icons.quiz, const Color(0xFF6C63FF)), 
-                      // Jarak 
                       const SizedBox(width: 12),
-                      // 2. Total Kategori
                       buildStatItem('Total Kategori', '5', Icons.category, const Color(0xFF4ECDC4)), 
-                      // Jarak
                       const SizedBox(width: 12),
-                      // 3. Tingkat Kesulitan
                       buildStatItem('Tingkat Kesulitan', 'Sulit', Icons.trending_up, const Color(0xFFFF9800)),
                     ], 
                   ), 
@@ -268,7 +255,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                 
                 const SizedBox(height: 32),
 
-                // Judul Kategori
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
@@ -283,7 +269,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
                 
                 const SizedBox(height: 16),
                 
-                // Daftar Kategori (Tile Vertikal)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
@@ -299,7 +284,6 @@ class _PageHomeState extends State<PageHome> with TickerProviderStateMixin {
         ],
       ),
       
-      // Floating Action Button untuk Kuis Acak
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _startRandomQuiz,
         backgroundColor: mainAccent,
