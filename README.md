@@ -40,21 +40,23 @@ EduQuiz adalah aplikasi kuis pilihan ganda berbasis Flutter yang dikembangkan un
 Berikut adalah beberapa tangkapan layar dari aplikasi EduQuiz:
 
 ### Login Page
-http://googleusercontent.com/image_generation_content/0
+<img width="402" height="694" alt="Screenshot 2025-11-05 205610" src="https://github.com/user-attachments/assets/ca1a1aab-f245-4a32-aa6f-9e9808fe91e0" />
 
 
 
 ### Home Page
-http://googleusercontent.com/image_generation_content/1
+<img width="404" height="703" alt="Screenshot 2025-11-05 205636" src="https://github.com/user-attachments/assets/7d76af04-0780-4fd6-b603-d1d2c7b1a461" />
 
 
 
 ### Quiz Page
-http://googleusercontent.com/image_generation_content/2
+<img width="405" height="698" alt="Screenshot 2025-11-05 205730" src="https://github.com/user-attachments/assets/86a54217-d3e9-4bcd-85db-f6dfc3859928" />
+<img width="405" height="697" alt="Screenshot 2025-11-05 205721" src="https://github.com/user-attachments/assets/263e0870-33f4-4b08-a3f9-f76372e43de5" />
 
 
 
-http://googleusercontent.com/image_generation_content/3
+### Result Page
+<img width="403" height="675" alt="Screenshot 2025-11-05 205802" src="https://github.com/user-attachments/assets/5b2c3be2-dce1-46bd-9e15-94aac926aa24" />
 
 
 
