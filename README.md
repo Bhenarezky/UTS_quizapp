@@ -35,7 +35,24 @@ EduQuiz adalah aplikasi kuis pilihan ganda berbasis Flutter yang dikembangkan un
 
 ---
 
-## 4. Kredit ke Sumber Aset yang Digunakan
+## 4. Tampilan Aplikasi
+
+**Login Page**
+<img width="402" height="694" alt="Screenshot 2025-11-05 205610" src="https://github.com/user-attachments/assets/661b81d9-0202-4293-afa1-e0d7766810fd" />
+
+**Home Page**
+<img width="404" height="703" alt="Screenshot 2025-11-05 205636" src="https://github.com/user-attachments/assets/501fdfae-68c3-493c-bfdd-07b65f8c38da" />
+
+**Quiz Page**
+<img width="405" height="698" alt="Screenshot 2025-11-05 205730" src="https://github.com/user-attachments/assets/33478014-b024-4b03-8f6d-f3a32bd3221b" />
+<img width="405" height="697" alt="Screenshot 2025-11-05 205721" src="https://github.com/user-attachments/assets/b3adfc6b-d84c-407f-80f1-95139a9a3955" />
+
+**Result Page**
+<img width="403" height="675" alt="Screenshot 2025-11-05 205802" src="https://github.com/user-attachments/assets/1f3303a4-60c5-4945-a33e-63399c8000cd" />
+
+---
+
+## 5. Kredit ke Sumber Aset yang Digunakan
 
 | Tipe Aset | Deskripsi | Sumber Lisensi |
 | :--- | :--- | :--- |
