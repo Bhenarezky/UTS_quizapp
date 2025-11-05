@@ -43,3 +43,4 @@ EduQuiz adalah aplikasi kuis pilihan ganda berbasis Flutter yang dikembangkan un
 | **Warna** | Palet warna tema, warna kategori, dan gradien hasil. | Warna *hardcoded* (dikembangkan sendiri berdasarkan inspirasi Material Design) |
 | **Data Soal** | Pertanyaan dan jawaban kuis di dalam `page_quiz.dart`. | Data Lokal (Dummy/Local Data) |
 | **Inspirasi Aplikas** | Konsep dasar aplikasi kuis interaktif dan variasi kategori mata pelajaran. | Quizizz (Sebagai Sumber Inspirasi) |
+| **Figma** | Alat yang digunakan untuk prototyping dan perancangan User Interface (UI) aplikasi. | https://www.figma.com/design/nNkD1ugALqaXuAcbEpRXwA/UTS-Pemrograman-Mobile?node-id=0-1&t=hYnDvd02TRA1i3la-1 |
